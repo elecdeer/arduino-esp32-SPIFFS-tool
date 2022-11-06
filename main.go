@@ -21,10 +21,12 @@ THE SOFTWARE.
 */
 package main
 
-import "github.com/elecdeer/arduino-esp32-SPIFFS-tool/arduino"
+import (
+	"github.com/elecdeer/arduino-esp32-SPIFFS-tool/cmd"
+)
 
 func main() {
-	//cmd.Execute()
+	cmd.Execute()
 
-	arduino.DialClient()
+	//arduino.DialClient()
 }
