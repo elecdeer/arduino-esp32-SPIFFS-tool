@@ -68,11 +68,11 @@ func ConstructPackParams(args []string) (PackParam, error) {
 	distPath := args[0]
 	sourceDir := args[1]
 
-	if !common.FileExists(partitionSchemePath) {
+	if !common.IsFileExists(partitionSchemePath) {
 		return PackParam{}, fmt.Errorf("Partition scheme file not found: %s\n", partitionSchemePath)
 	}
 
-	if !common.DirExists(sourceDir) {
+	if !common.IsDirExists(sourceDir) {
 		return PackParam{}, fmt.Errorf("Source directory not found: %s\n", sourceDir)
 	}
 

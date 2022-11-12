@@ -15,6 +15,7 @@ type MakeSpiffsImageOptions struct {
 }
 
 func MakeSpiffsImage(toolPath string, dist string, source string, options MakeSpiffsImageOptions) error {
+	log.Printf("mkspiffs: %s", toolPath)
 	cmdArgs := []string{
 		"-c", source,
 		"-p", strconv.Itoa(options.PageSize),

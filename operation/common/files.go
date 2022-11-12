@@ -5,17 +5,17 @@ import (
 	"os"
 )
 
-func PathExists(path string) bool {
-	_, err := os.Stat(path)
-	return err == nil
-}
+//func IsPathExists(path string) bool {
+//	_, err := os.Stat(path)
+//	return err == nil
+//}
 
-func DirExists(path string) bool {
+func IsDirExists(path string) bool {
 	stat, err := os.Stat(path)
 	return err == nil && stat.IsDir()
 }
 
-func FileExists(path string) bool {
+func IsFileExists(path string) bool {
 	stat, err := os.Stat(path)
 	return err == nil && !stat.IsDir()
 }
