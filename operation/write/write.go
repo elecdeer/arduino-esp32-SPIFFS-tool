@@ -21,32 +21,39 @@ type WriteImageOptions struct {
 	NoVerify   bool                 //default: true
 }
 
-func WriteImageWithSerial(toolPath string, imagePath string, options WriteImageOptions) error {
+func (o WriteImageOptions) ToCmdOptionsText(imagePath string) []string {
+	var args []string
 	toolArgs := []string{
-		"--chip", options.Chip,
-		"--baud", strconv.Itoa(options.SerialBaud),
+		"--chip", o.Chip,
+		"--baud", strconv.Itoa(o.SerialBaud),
 	}
-	if options.SerialPort != "" {
-		toolArgs = append(toolArgs, "--port", options.SerialPort)
+	if o.SerialPort != "" {
+		toolArgs = append(toolArgs, "--port", o.SerialPort)
 	}
+	args = append(args, toolArgs...)
 
 	cmdArgs := []string{
 		"write_flash",
-		"--flash_freq", options.FlashFreq,
-		"--flash_mode", options.FlashMode,
-		"--flash_size", options.FlashSize,
+		"--flash_freq", o.FlashFreq,
+		"--flash_mode", o.FlashMode,
+		"--flash_size", o.FlashSize,
 	}
-	if options.NoVerify {
+	if o.NoVerify {
 		cmdArgs = append(cmdArgs, "--verify", "false")
 	}
+	args = append(args, cmdArgs...)
 
 	posArgs := []string{
-		"0x" + strconv.FormatUint(options.Partition.Offset, 16),
+		"0x" + strconv.FormatUint(o.Partition.Offset, 16),
 		imagePath,
 	}
-
-	args := append(toolArgs, cmdArgs...)
 	args = append(args, posArgs...)
+
+	return args
+}
+
+func WriteImageWithSerial(toolPath string, imagePath string, options WriteImageOptions) error {
+	args := options.ToCmdOptionsText(imagePath)
 
 	log.Printf("esptool.py: %s", toolPath)
 	log.Printf("exec cmd: esptool.py %s\n", strings.Join(args, " "))

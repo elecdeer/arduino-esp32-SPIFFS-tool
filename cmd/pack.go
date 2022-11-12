@@ -96,11 +96,6 @@ func ConstructPackParams(args []string) (PackParam, error) {
 var (
 	partitionSchemePath string
 	mkspiffsPath        string
-	//distPath            string
-	//sourcePaths         []string
-	//boardFqbn       string
-	//partitionScheme string // boardFqbnが前提
-
 )
 
 func init() {
@@ -110,8 +105,4 @@ func init() {
 	packCmd.MarkFlagRequired("partition-scheme")
 
 	packCmd.Flags().StringVarP(&mkspiffsPath, "mkspiffs", "m", "", "mkspiffs path")
-
-	//packCmd.Flags().StringVarP(&distPath, "dist", "d", "", "Destination file path")
-	//packCmd.Flags().StringSliceVarP(&sourcePaths, "source", "s", []string{}, "Source file paths")
-
 }
