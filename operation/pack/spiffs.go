@@ -2,6 +2,7 @@ package pack
 
 import (
 	"fmt"
+	"github.com/elecdeer/arduino-esp32-SPIFFS-tool/cmd/options"
 	"log"
 	"os/exec"
 	"strconv"
@@ -9,7 +10,7 @@ import (
 )
 
 type MakeSpiffsImageOptions struct {
-	Partition *PartitionSchema
+	Partition *options.PartitionSchema
 	PageSize  int
 	BlockSize int
 }

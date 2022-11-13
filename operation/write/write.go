@@ -2,7 +2,7 @@ package write
 
 import (
 	"fmt"
-	"github.com/elecdeer/arduino-esp32-SPIFFS-tool/operation/pack"
+	"github.com/elecdeer/arduino-esp32-SPIFFS-tool/cmd/options"
 	"log"
 	"os"
 	"os/exec"
@@ -11,14 +11,14 @@ import (
 )
 
 type WriteImageOptions struct {
-	Chip       string               //default: auto
-	Partition  pack.PartitionSchema //必須
-	SerialBaud int                  //必須
-	SerialPort string               //指定しない場合は自動検出
-	FlashMode  string               //default: keep
-	FlashFreq  string               //default: keep
-	FlashSize  string               //default: detect
-	NoVerify   bool                 //default: true
+	Chip       string                  //default: auto
+	Partition  options.PartitionSchema //必須
+	SerialBaud int                     //必須
+	SerialPort string                  //指定しない場合は自動検出
+	FlashMode  string                  //default: keep
+	FlashFreq  string                  //default: keep
+	FlashSize  string                  //default: detect
+	NoVerify   bool                    //default: true
 }
 
 func (o WriteImageOptions) ToCmdOptionsText(imagePath string) []string {
